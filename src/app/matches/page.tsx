@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { Match } from '@/types';
 
-export default function MatchesPage() {
+function MatchesContent() {
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentMatchIndex, setCurrentMatchIndex] = useState(0);
@@ -648,5 +648,15 @@ export default function MatchesPage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function MatchesPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="text-white">Loading matches...</div>
+    </div>}>
+      <MatchesContent />
+    </Suspense>
   );
 }
