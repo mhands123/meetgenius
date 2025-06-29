@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+
+export const dynamic = 'force-dynamic';
 
 interface ProcessingStep {
   id: string;
@@ -65,7 +67,7 @@ const processingSteps: ProcessingStep[] = [
   }
 ];
 
-export default function ProcessingPage() {
+function ProcessingContent() {
   const [currentStep, setCurrentStep] = useState(0);
   const [steps, setSteps] = useState(processingSteps);
   const [progress, setProgress] = useState(0);
@@ -251,5 +253,15 @@ export default function ProcessingPage() {
       </div>
       </div>
     </div>
+  );
+}
+
+export default function ProcessingPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="text-white">Loading...</div>
+    </div>}>
+      <ProcessingContent />
+    </Suspense>
   );
 }
