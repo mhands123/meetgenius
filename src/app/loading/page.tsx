@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -44,7 +44,7 @@ const processingSteps: ProcessingStep[] = [
   }
 ];
 
-export default function LoadingPage() {
+function LoadingContent() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const searchParams = useSearchParams();
@@ -169,5 +169,15 @@ export default function LoadingPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoadingPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="text-white">Loading...</div>
+    </div>}>
+      <LoadingContent />
+    </Suspense>
   );
 }
