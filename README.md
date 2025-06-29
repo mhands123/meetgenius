@@ -1,36 +1,142 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🤖 MeetGenius AI Matchmaker
 
-## Getting Started
+**AI-Powered Networking for AI Demo Night - July 9, 2025**
 
-First, run the development server:
+MeetGenius is an intelligent matchmaking system that parses LinkedIn-style resumes, understands professional backgrounds and networking goals, and produces high-quality matches for live networking events.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🌟 Features
+
+- **AI Resume Parsing**: Extracts structured profiles from PDF resumes using OpenAI GPT-4
+- **Intelligent Matching**: Multi-factor compatibility scoring based on skills, goals, and experience
+- **Dark Theme UI**: Sleek, modern interface optimized for demo presentations
+- **Real-time Presence**: Simulated live event status for attendees
+- **Interactive Match Cards**: Detailed match explanations with conversation starters
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+
+- OpenAI API Key
+- PDF resume files in the parent directory
+
+### Installation
+
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Set your OpenAI API key**:
+   ```bash
+   export OPENAI_API_KEY="your-openai-api-key-here"
+   ```
+
+3. **Process the resumes** (this will parse PDFs and generate matches):
+   ```bash
+   npm run process-resumes
+   ```
+
+4. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+
+5. **Open the app**: Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 📁 Project Structure
+
+```
+meetgenius-matcher/
+├── src/
+│   ├── app/                 # Next.js app directory
+│   │   ├── api/matches/     # API route for matches data
+│   │   └── page.tsx         # Main application page
+│   ├── components/          # React components
+│   │   ├── Header.tsx       # Event header component
+│   │   └── MatchCard.tsx    # Match display component
+│   ├── utils/               # Utility functions
+│   │   ├── pdfParser.ts     # PDF parsing logic
+│   │   ├── openaiAgent.ts   # OpenAI integration
+│   │   └── matchingEngine.ts # Matching algorithm
+│   ├── types/               # TypeScript interfaces
+│   ├── scripts/             # Processing scripts
+│   └── data/                # Generated data files
+└── ../Profile (*.pdf)       # Resume PDF files
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧠 How It Works
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Resume Parsing
+- Reads PDF files from the parent directory
+- Uses OpenAI GPT-4 to extract structured data:
+  - Name, title, company, location
+  - Skills, certifications, experience
+  - Inferred networking goals
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. Intelligent Matching
+- Multi-factor compatibility scoring:
+  - Domain/industry overlap
+  - Complementary roles (founder ↔ engineer)
+  - Shared skills and tools
+  - Compatible networking goals
+  - Location proximity bonus
+  - Certification overlap
 
-## Learn More
+### 3. Match Generation
+- Each attendee gets exactly one high-quality match
+- AI generates conversation starters and shared topics
+- Confidence scoring (Low/Medium/High)
+- Simulated presence status
 
-To learn more about Next.js, take a look at the following resources:
+## 🎯 Demo Day Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Perfect for live demonstrations at networking events:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Pre-event**: Process attendee resumes with `npm run process-resumes`
+2. **During event**: Display matches on screens or individual devices
+3. **Interactive**: Attendees can see their matches and conversation starters
+4. **Real-time feel**: Simulated presence updates create live event atmosphere
 
-## Deploy on Vercel
+## 🔧 Configuration
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Environment Variables
+- `OPENAI_API_KEY`: Required for AI processing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Customization
+- Modify matching weights in `src/utils/matchingEngine.ts`
+- Update event details in `src/app/page.tsx`
+- Customize UI theme in `src/app/globals.css`
+
+## 📊 Output Files
+
+After running `npm run process-resumes`:
+- `src/data/parsed_profiles.json`: Structured profile data
+- `src/data/matches.json`: Generated matches with explanations
+
+## 🎨 UI Components
+
+- **Header**: Event branding with live status indicator
+- **MatchCard**: Individual match display with:
+  - Match score and confidence level
+  - Attendee profiles with presence status
+  - Shared interests and skills
+  - AI-generated conversation starters
+  - Expandable details view
+
+## 🚀 Deployment
+
+Ready for deployment on Vercel, Netlify, or any Node.js hosting platform:
+
+```bash
+npm run build
+npm start
+```
+
+## 🤝 Contributing
+
+Built for AI Demo Night 2025 - contributions welcome for future networking events!
+
+## 📝 License
+
+MIT License - Perfect for demo and educational use.

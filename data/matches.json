@@ -1,0 +1,682 @@
+[
+  {
+    "attendee": "Bernard Uko",
+    "attendeeProfile": {
+      "id": "profile-1751148817034-ky75a5cw9",
+      "name": "Bernard Uko",
+      "title": "Founder/ IT Tech Support",
+      "company": "Zone 103 Media Enterprises",
+      "location": "Minneapolis, Minnesota, United States",
+      "skills": [
+        "VMware",
+        "Ubuntu",
+        "Windows 7",
+        "Installing and Migrating Servers",
+        "Computer Repairs",
+        "Project Planning",
+        "Customer Support"
+      ],
+      "certifications": [
+        "Microsoft Office 365",
+        "CompTIA Linux+",
+        "Introduction to IT & Cybersecurity",
+        "Learn SQL Course"
+      ],
+      "experience": [
+        "Founder/ IT Tech Support at Zone 103 Media Enterprises",
+        "Volunteer Technical Support/Operations Staff at Free Geek Twin Cities",
+        "Desktop Support Technician at United Software Group Inc/PwC",
+        "Desktop Support Technician at Cadan Technologies",
+        "Desktop Support Representative at IBM/Allianz",
+        "Volunteer Technical Support at Minneapolis Community and Technical College",
+        "IT Helpdesk Intern at Tunheim",
+        "IT Contactor/Help Desk Worker at Authentic International Group of Companies (AIGC), LLC"
+      ],
+      "interests": [
+        "Computer Support",
+        "Network Administration",
+        "IT Management"
+      ],
+      "goal": "Find clients or startup partners"
+    },
+    "match": "Itti Jindani",
+    "matchProfile": {
+      "id": "profile-1751148921369-ccrgws43k",
+      "name": "Itti Jindani",
+      "title": "Director Application and Platform Engineering",
+      "company": "Sleep Number Corporation",
+      "location": "Minneapolis, Minnesota, United States",
+      "skills": [
+        "DevSecOps",
+        "Enterprise IT Strategy",
+        "Portfolio Management",
+        "Product Management using Electronic Price Labels",
+        "Team Leadership",
+        "Technical Product Management and Development",
+        "Technology Portfolio Management",
+        "Enterprise Strategy Planning and Execution",
+        "Agile/Scrum",
+        "Change Management"
+      ],
+      "certifications": [],
+      "experience": [
+        "Director Application and Platform Engineering at Sleep Number Corporation",
+        "Sr. Manager Application Development at Sleep Number Corporation",
+        "Enterprise Architect at Sleep Number Corporation",
+        "Sr. Technical Architect at Target Corp",
+        "Programmer Analyst at Ramsoft Systems Inc.",
+        "Programmer Analyst at Quantum Technologies Inc.",
+        "MTS at C-DAC"
+      ],
+      "interests": [
+        "Big Data",
+        "Infrastructure and Networking"
+      ],
+      "goal": "Technical collaboration and AI deep dives"
+    },
+    "matchScore": 0.92,
+    "whatYouShare": [
+      "IT Leadership",
+      "Enterprise Systems",
+      "Minneapolis Tech Scene",
+      "Project Management",
+      "Technical Innovation"
+    ],
+    "icebreakers": [
+      "I see you're leading IT at Sleep Number - what's the most exciting tech challenge you're tackling there?",
+      "Your DevSecOps experience is impressive. How do you balance security with rapid development in enterprise environments?",
+      "As fellow IT leaders in Minneapolis, what trends are you seeing in the local tech ecosystem?"
+    ],
+    "matchConfidence": "High",
+    "presenceStatus": {
+      "attendee": "Present",
+      "match": "Present"
+    }
+  },
+  {
+    "attendee": "Glenn Gray",
+    "attendeeProfile": {
+      "id": "profile-1751148825114-a80iqqqbc",
+      "name": "Glenn Gray",
+      "title": "Digital Brand Connector / AI Enthusiast",
+      "company": "Stiles Financial Services, Inc.",
+      "location": "Minneapolis, Minnesota, United States",
+      "skills": [
+        "Portrait Photography",
+        "Non-Fungible Tokens (NFTs)",
+        "Web3",
+        "Digital Design",
+        "Creative Direction",
+        "Interactive Campaigns",
+        "Content Creation",
+        "UX Design"
+      ],
+      "certifications": [],
+      "experience": [
+        "Digital Brand Connector at Stiles Financial Services, Inc.",
+        "Photographer at Flyphoto.io",
+        "Conceptual, Interactive / Creative Director at Glenn Gray Creative+",
+        "Creative Director at MetaBeauts NFT",
+        "Executive Creative Director at Immersive Cure VR",
+        "Creative Lead at BI WORLDWIDE",
+        "Creative Director / Co-Founder at Angel & Gray",
+        "Interactive Creative Director at Hunt Adkins",
+        "Interactive Creative Director at Polaris Industries",
+        "Sr. Interactive Designer at Space 150"
+      ],
+      "interests": [
+        "Digital Solutions",
+        "Brand Connection",
+        "Photography",
+        "NFTs",
+        "Web3",
+        "Creative Direction",
+        "Interactive Design"
+      ],
+      "goal": "Find clients and expand network"
+    },
+    "match": "Mark Zukor",
+    "matchProfile": {
+      "id": "profile-1751148839656-wnkyxkk31",
+      "name": "Mark Zukor",
+      "title": "Fractional Creative Director & Brand Builder",
+      "company": "Zukor Brand Consulting",
+      "location": "Minneapolis, Minnesota, United States",
+      "skills": [
+        "Creative Problem Solving",
+        "Print Advertising",
+        "Search Engine Optimization (SEO)"
+      ],
+      "certifications": [
+        "Social Media Marketing"
+      ],
+      "experience": [
+        "Worked on big brands like UPS, Target, Best Buy, Delta, US Bank, 3M, The Minnesota Twins",
+        "Developed marketing chops",
+        "Helped small and midsize companies",
+        "Worked directly with business owners, marketing execs, CEOs"
+      ],
+      "interests": [
+        "Making things",
+        "Solving problems",
+        "Learning",
+        "Taking on challenges",
+        "Helping companies express what makes them amazing",
+        "Working directly with business owners, marketing execs, CEOs"
+      ],
+      "goal": "Find clients and expand network"
+    },
+    "matchScore": 0.89,
+    "whatYouShare": [
+      "Creative Direction",
+      "Brand Strategy",
+      "Digital Innovation",
+      "Minneapolis Creative Scene",
+      "Client Relationship Management"
+    ],
+    "icebreakers": [
+      "Your work in brand consulting is fascinating - what's the most challenging rebrand you've tackled recently?",
+      "I love your approach to digital brand connection. How do you see AI changing the creative industry?",
+      "As creative professionals in Minneapolis, what opportunities do you see for collaboration in our market?"
+    ],
+    "matchConfidence": "High",
+    "presenceStatus": {
+      "attendee": "Present",
+      "match": "Present"
+    }
+  },
+  {
+    "attendee": "Aditya Prabhu",
+    "attendeeProfile": {
+      "id": "profile-1751148883283-bh1t5q6hy",
+      "name": "Aditya Prabhu",
+      "title": "Artificial Intelligence Designer",
+      "company": "Ryan Companies US, Inc.",
+      "location": "Minneapolis, Minnesota, United States",
+      "skills": [
+        "AI Agents",
+        "Artificial Intelligence (AI)",
+        "Neural Networks",
+        "Python",
+        "React.js",
+        "Flask",
+        ".NET Core",
+        "AWS",
+        "Raspberry Pi OS",
+        "WiFi",
+        "Thread & Matter",
+        "LoRa modules",
+        "LangChain",
+        "Google Cloud Platform",
+        "Vertex AI",
+        "Pydantic AI",
+        "BigQuery",
+        "Semantic Search",
+        "Java SpringBoot",
+        "PostgreSQL",
+        "Flyway",
+        "Agile/Scum Workflow",
+        "Groov",
+        "Jira",
+        "Git",
+        "Python",
+        "MATLAB",
+        "Matched Filtering",
+        "Receiver Operating Characteristic Curves",
+        "Binary Classifiers"
+      ],
+      "certifications": [
+        "Supervised Machine Learning: Regression and Classification",
+        "Advanced Learning Algorithms"
+      ],
+      "experience": [
+        "Natural language querying and retrieval by building custom AI Agents at Ryan Companies US, Inc.",
+        "CEO at Alure LLC",
+        "Technology Development Program Associate at Ameriprise Financial Services, LLC",
+        "Director at Atland Ventures",
+        "Software Engineer Intern at Target",
+        "Software Engineer Intern at Black River Systems Company"
+      ],
+      "interests": [
+        "IoT and automation",
+        "machine learning",
+        "AI Agents",
+        "data visualization",
+        "automation",
+        "Japanese Beetles prevention"
+      ],
+      "goal": "Technical collaboration and AI deep dives"
+    },
+    "match": "Natalia Dueholm",
+    "matchProfile": {
+      "id": "profile-1751148894047-ljyugivim",
+      "name": "Natalia Dueholm",
+      "title": "Director, North American Division",
+      "company": "VM.PL Software House",
+      "location": "St Paul, Minnesota, United States",
+      "skills": [
+        "Homeschooling",
+        "Localization",
+        "Freight",
+        "Business Consulting",
+        "Translation",
+        "Teaching",
+        "Software Development",
+        "Data Analytics",
+        "Cloud Services",
+        "Mobile Applications",
+        "Market Research",
+        "Sales Presentations",
+        "Android",
+        "Angular",
+        "ASP.NET Core",
+        "Azure Cloud Services",
+        "C#",
+        "C++",
+        "Docker & Kubernetes",
+        "Flutter",
+        "Ionic",
+        "Java",
+        "JavaScript",
+        "jQuery",
+        "Laravel",
+        "Magento",
+        ".NET",
+        "Node.js",
+        "PHP",
+        "Python",
+        "React.js",
+        "RPG",
+        "Salesforce",
+        "Spring",
+        "Symfony",
+        "TypeScript",
+        "Vue.js"
+      ],
+      "certifications": [
+        "Practical IT",
+        "Giving Your Elevator Pitch",
+        "Sales Prospecting (2019)"
+      ],
+      "experience": [
+        "Director at VM.PL Software House",
+        "Board Member at Emerging Technologies North",
+        "Business Consultant (Freelance)",
+        "Co-Founder at AmberTree",
+        "English-Polish/ Polish-English Translator at various publishing houses",
+        "Polish and French Teacher at Blaise Pascal University"
+      ],
+      "interests": [
+        "Software Development",
+        "Data Analytics",
+        "Cloud Services",
+        "Mobile Applications",
+        "Market Research",
+        "Sales Presentations",
+        "Teaching",
+        "Translation"
+      ],
+      "goal": "Generate leads and partnerships"
+    },
+    "matchScore": 0.91,
+    "whatYouShare": [
+      "Software Development",
+      "Technical Leadership",
+      "AI/ML Innovation",
+      "International Business",
+      "Team Building"
+    ],
+    "icebreakers": [
+      "Your AI design work at Ryan Companies sounds cutting-edge - what applications are you most excited about?",
+      "Leading international software teams must be challenging. What's your approach to cross-cultural collaboration?",
+      "With your Python and React expertise, what do you think about the future of AI-assisted development?"
+    ],
+    "matchConfidence": "High",
+    "presenceStatus": {
+      "attendee": "Present",
+      "match": "Present"
+    }
+  },
+  {
+    "attendee": "Himanshu Laiker, MBA",
+    "attendeeProfile": {
+      "id": "profile-1751148863296-cqdkv7xn9",
+      "name": "Himanshu Laiker, MBA",
+      "title": "Advisor | IT Solutions | Medical Devices | Global Healthcare Executive | AI | Start-ups",
+      "company": "University of Minnesota, Technology Commercialization",
+      "location": "Minneapolis, Minnesota, United States",
+      "skills": [
+        "Strategy",
+        "Business Development",
+        "Product Marketing",
+        "Leadership",
+        "Change Management",
+        "Financial Analysis",
+        "Market Segmentation",
+        "Portfolio Management",
+        "Strategic Planning"
+      ],
+      "certifications": [],
+      "experience": [
+        "Executive in Residence at University of Minnesota, Technology Commercialization",
+        "Advisor at HealthcareMN",
+        "Medtech/Healthcare Advisory Board Member at BETA",
+        "Judge/Mentor at Minnesota Cup",
+        "Advisor at Dotsquares",
+        "Executive Consultant at Executive Consulting",
+        "Sr. VP, Global Commercial Operations (Consulting) at Cetas Healthcare",
+        "Director Strategy, Business Development & Healthcare Solutions- South Asia at Medtronic",
+        "Insulin Pump Portfolio Marketing Manager, Europe and Central Asia at Medtronic",
+        "Corporate Strategy and Market Development at Medtronic",
+        "Project Manager & Business Analyst at Medtronic",
+        "Financial Analyst at Medtronic"
+      ],
+      "interests": [
+        "Medical Devices",
+        "AI",
+        "Start-ups",
+        "Strategy Development",
+        "Market Development",
+        "New Business Initiatives",
+        "Strategic Accounts",
+        "Services & Solutions"
+      ],
+      "goal": "Find clients or startup partners"
+    },
+    "match": "Andre Smith",
+    "matchProfile": {
+      "id": "profile-1751148872824-eakz8n8v0",
+      "name": "Andre Smith",
+      "title": "Founder",
+      "company": "Chosn App",
+      "location": "Minneapolis, Minnesota, United States",
+      "skills": [
+        "Project Coordination",
+        "Optimization",
+        "Product Analysis"
+      ],
+      "certifications": [],
+      "experience": [
+        "Founder and CEO of Chosn, an AI-driven journaling platform for emotional wellness",
+        "Client Success Associate at proSapient, where he utilized proprietary technology and platform for expert recruitment",
+        "Document Analyst at Dauntless Discovery, where he identified key information in relevant documents for ongoing litigation",
+        "Field Analyst at RetailData, LLC, where he conducted comprehensive analysis of competitive market research mobile applications",
+        "Operational Specialist at GXI Outdoor Power LLC, where he processed and managed commercial equipment orders",
+        "Managing Partner and Business Analyst at Imperial Products International Inc., where he negotiated and structured a purchase and licensing agreement for JaundX mortuary science intellectual property",
+        "Product Strategist at Imperial Products International Inc., where he developed and presented detailed business cases for biotechnology, chemicals, R&D software, and energy products",
+        "Executive Assistant Manager at Walgreens, where he implemented new operational strategies based on revenue and expenditure KPIs analysis for 15 stores"
+      ],
+      "interests": [
+        "AI Technology",
+        "Emotional Wellness",
+        "Mental Health"
+      ],
+      "goal": "Find clients or startup partners"
+    },
+    "matchScore": 0.88,
+    "whatYouShare": [
+      "Healthcare Innovation",
+      "Startup Leadership",
+      "Technology Commercialization",
+      "Mobile Solutions",
+      "Entrepreneurship"
+    ],
+    "icebreakers": [
+      "Your healthcare tech background is impressive - how do you see mobile apps transforming patient care?",
+      "The Chosn App concept is intriguing. What inspired you to focus on mobile app development?",
+      "As entrepreneurs in Minneapolis, what resources have been most valuable for your startup journey?"
+    ],
+    "matchConfidence": "High",
+    "presenceStatus": {
+      "attendee": "Just Arrived",
+      "match": "Present"
+    }
+  },
+  {
+    "attendee": "Mark Hurlburt",
+    "attendeeProfile": {
+      "id": "profile-1751148832181-78t126axd",
+      "name": "Mark Hurlburt",
+      "title": "President",
+      "company": "Prime Digital Academy",
+      "location": "Minneapolis, Minnesota, United States",
+      "skills": [
+        "HubSpot",
+        "Leadership",
+        "Strategy"
+      ],
+      "certifications": [],
+      "experience": [
+        "President and Founder at Prime Digital Academy",
+        "Chief Strategy Officer at The Nerdery",
+        "Interactive Designer at Bitwise Logic",
+        "New Media Manager at Scholarship America"
+      ],
+      "interests": [
+        "Technology",
+        "Creativity",
+        "People",
+        "Problem-solving",
+        "Consulting",
+        "Advising startups",
+        "Leadership roles"
+      ],
+      "goal": "Find clients or startup partners"
+    },
+    "match": "Kenneth Krutsch",
+    "matchProfile": {
+      "id": "profile-1751148847740-43i1b6ayy",
+      "name": "Kenneth Krutsch",
+      "title": "Agency Founder",
+      "company": "KRUTSCH",
+      "location": "Greater Minneapolis-St. Paul Area",
+      "skills": [
+        "User Experience",
+        "SaaS",
+        "Software Engineering"
+      ],
+      "certifications": [
+        "Giving Your Elevator Pitch",
+        "Honored Listee",
+        "Learn LinkedIn Sales Navigator"
+      ],
+      "experience": [
+        "Founder and President at KRUTSCH",
+        "Senior Vice President, Operations at Xiotech",
+        "Vice President, Engineering at Xiotech",
+        "Software Architect & Director, Applications Engineering at Xiotech",
+        "CTO at SoniqCast, LLC",
+        "CTO at Marix Technologies",
+        "Adjunct Faculty at Saint Paul College",
+        "User Interface Software Architect, Technical Lead at Digi International",
+        "User Interface Software Architect, Team & Technical Lead at StorageTek",
+        "Sergeant (E-5), Acting Squad Leader at US Army"
+      ],
+      "interests": [
+        "AI-driven, UX-first design",
+        "scalable development",
+        "results-driven digital transformation"
+      ],
+      "goal": "Find clients or startup partners"
+    },
+    "matchScore": 0.87,
+    "whatYouShare": [
+      "Agency Leadership",
+      "Strategic Planning",
+      "Creative Direction",
+      "Business Development",
+      "Team Management"
+    ],
+    "icebreakers": [
+      "Leading Prime Digital Academy must be rewarding - what trends are you seeing in digital education?",
+      "Your agency KRUTSCH has an interesting approach. What's your philosophy on creative leadership?",
+      "As agency founders, how do you balance creative vision with business growth?"
+    ],
+    "matchConfidence": "High",
+    "presenceStatus": {
+      "attendee": "Present",
+      "match": "Just Arrived"
+    }
+  },
+  {
+    "attendee": "Steve Stark",
+    "attendeeProfile": {
+      "id": "profile-1751148853378-4ykegaude",
+      "name": "Steve Stark",
+      "title": "Pres./Founder",
+      "company": "Score Discs Corp.",
+      "location": "Prior Lake, Minnesota, United States",
+      "skills": [
+        "Web Design",
+        "Advertising",
+        "Publishing",
+        "Product Development",
+        "Design",
+        "Marketing",
+        "Graphics",
+        "Animation",
+        "Video Editing"
+      ],
+      "certifications": [],
+      "experience": [
+        "Pres./Founder at Score Discs Corp.",
+        "Author/Founder, Creator, Publisher/Developer at Animated Trivia",
+        "Senior Technical Assistance at Stanley Black & Decker, Inc.",
+        "Owner at Soft Flyer, LLC",
+        "Contract Graphic Designer/Video Editing-Production at EMS Exhibits",
+        "Marketing at Stressfree Living Magazine, Get Up & Go, Lifestyle Choices"
+      ],
+      "interests": [
+        "Product Development",
+        "Innovation",
+        "Sports Products",
+        "Trivia Games"
+      ],
+      "goal": "Find clients or startup partners"
+    },
+    "match": "Colin Hirdman",
+    "matchProfile": {
+      "id": "profile-1751148909157-p4286ezjq",
+      "name": "Colin Hirdman",
+      "title": "Co-Founder",
+      "company": "Rainmaker",
+      "location": "Minneapolis, Minnesota, United States",
+      "skills": [
+        "Entrepreneurship",
+        "Start-ups",
+        "Leadership"
+      ],
+      "certifications": [],
+      "experience": [
+        "Co-Founder at Rainmaker",
+        "Co-founder at Monkey Island Ventures",
+        "Board Member at Minnesota Blockchain Initiative",
+        "Co-Founder at Cloudburst, SBC",
+        "Co-Founder at SharedSuccessAgreement.org",
+        "Co-Founder at winwinGO",
+        "Founding Partner at Augurian",
+        "Co-Founder at QuickTake",
+        "Co-Founder at gainspot",
+        "Co-Founder at GameTheory",
+        "Co Founder at FLUID Water Meter",
+        "Co-founder at Localtweeps.com | SMBtweet.com",
+        "Co-founder at Zyngram",
+        "Co-Founder at the 3rd place",
+        "Founder/President at Vencio, Inc."
+      ],
+      "interests": [
+        "Entrepreneurship",
+        "Start-ups",
+        "Blockchain",
+        "Software Development",
+        "Digital Marketing"
+      ],
+      "goal": "Find clients or startup partners"
+    },
+    "matchScore": 0.86,
+    "whatYouShare": [
+      "Product Development",
+      "Manufacturing Innovation",
+      "Startup Experience",
+      "Business Strategy",
+      "Market Expansion"
+    ],
+    "icebreakers": [
+      "Score Discs Corp sounds like an innovative product company - what's your approach to product development?",
+      "Rainmaker is an intriguing name for a startup. What problem are you solving in the market?",
+      "As product-focused entrepreneurs, how do you validate new ideas before full development?"
+    ],
+    "matchConfidence": "High",
+    "presenceStatus": {
+      "attendee": "Present",
+      "match": "Present"
+    }
+  },
+  {
+    "attendee": "Christi Kmecik",
+    "attendeeProfile": {
+      "id": "profile-1751148898739-jl5i9b9xl",
+      "name": "Christi Kmecik",
+      "title": "Founder Owner",
+      "company": "Written Hugs Designs",
+      "location": "Shakopee, Minnesota, United States",
+      "skills": [
+        "Digital Art",
+        "Empathy",
+        "Creative Entrepreneurship"
+      ],
+      "certifications": [],
+      "experience": [
+        "Founder and Owner at Written Hugs Designs for 2 years 8 months"
+      ],
+      "interests": [
+        "Creating greeting cards that foster meaningful connections",
+        "Supporting families going through loss and/or terminal diagnosis through donations"
+      ],
+      "goal": "Find clients or startup partners"
+    },
+    "match": "Hayley Brooks",
+    "matchProfile": {
+      "id": "profile-1751148927512-jbh24sk8g",
+      "name": "Hayley Brooks",
+      "title": "Co-Founder",
+      "company": "Communiful",
+      "location": "Minneapolis, Minnesota, United States",
+      "skills": [
+        "Non-profits",
+        "Teaching",
+        "Programming Languages"
+      ],
+      "certifications": [],
+      "experience": [
+        "Co-Founder at Communiful",
+        "Co-Founder at metaspace",
+        "Co-Founder at Whooo's Reading"
+      ],
+      "interests": [
+        "Entrepreneurship",
+        "Engineering",
+        "Community Building"
+      ],
+      "goal": "Find clients or startup partners"
+    },
+    "matchScore": 0.85,
+    "whatYouShare": [
+      "Creative Entrepreneurship",
+      "Community Building",
+      "Social Impact",
+      "Design Innovation",
+      "Women in Business"
+    ],
+    "icebreakers": [
+      "Written Hugs Designs is such a heartwarming concept - what inspired you to start this business?",
+      "Communiful's focus on community building is needed now more than ever. What's your vision for the platform?",
+      "As women entrepreneurs in Minneapolis, what advice would you give to other women starting businesses?"
+    ],
+    "matchConfidence": "High",
+    "presenceStatus": {
+      "attendee": "Present",
+      "match": "Present"
+    }
+  }
+]
