@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { Match } from '@/types';
 
+export const dynamic = 'force-dynamic';
+
 function MatchesContent() {
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState(true);

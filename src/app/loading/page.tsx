@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams, useRouter } from 'next/navigation';
 
+export const dynamic = 'force-dynamic';
+
 interface ProcessingStep {
   id: string;
   title: string;
