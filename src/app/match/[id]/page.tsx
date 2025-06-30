@@ -28,7 +28,14 @@ export default function MatchDetailPage() {
 
       if (response.ok && data.matches) {
         setMatches(data.matches);
-        const currentMatch = data.matches.find((_: Match, index: number) => index.toString() === matchId);
+
+        // Decode the matchId and find the match by attendee-match combination
+        const decodedMatchId = decodeURIComponent(matchId);
+        const currentMatch = data.matches.find((match: Match) => {
+          const matchIdentifier = `${match.attendee}-${match.match}`;
+          return matchIdentifier === decodedMatchId;
+        });
+
         setMatch(currentMatch || null);
       }
     } catch (error) {
@@ -50,20 +57,26 @@ export default function MatchDetailPage() {
   };
 
   const getCurrentMatchIndex = () => {
-    return parseInt(matchId);
+    const decodedMatchId = decodeURIComponent(matchId);
+    return matches.findIndex((match: Match) => {
+      const matchIdentifier = `${match.attendee}-${match.match}`;
+      return matchIdentifier === decodedMatchId;
+    });
   };
 
   const navigateToMatch = (direction: 'prev' | 'next') => {
     const currentIndex = getCurrentMatchIndex();
     let newIndex;
-    
+
     if (direction === 'prev') {
       newIndex = currentIndex > 0 ? currentIndex - 1 : matches.length - 1;
     } else {
       newIndex = currentIndex < matches.length - 1 ? currentIndex + 1 : 0;
     }
-    
-    router.push(`/match/${newIndex}?event=${eventId}`);
+
+    const nextMatch = matches[newIndex];
+    const nextMatchId = encodeURIComponent(`${nextMatch.attendee}-${nextMatch.match}`);
+    router.push(`/match/${nextMatchId}?event=${eventId}`);
   };
 
   if (loading) {

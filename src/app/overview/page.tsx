@@ -222,9 +222,12 @@ interface MatchOverviewCardProps {
 }
 
 function MatchOverviewCard({ match, index, eventId }: MatchOverviewCardProps) {
+  // Create a unique identifier for the match
+  const matchId = encodeURIComponent(`${match.attendee}-${match.match}`);
+
   return (
     <Link
-      href={`/match/${index}?event=${eventId}`}
+      href={`/match/${matchId}?event=${eventId}`}
       className="block group animate-fade-in-up"
       style={{ animationDelay: `${index * 50}ms` }}
     >
