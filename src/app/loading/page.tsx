@@ -61,10 +61,10 @@ function LoadingContent() {
         setIsComplete(true);
         setTimeout(() => {
           try {
-            router.push(`/matches?event=${eventId}`);
+            router.push(`/overview?event=${eventId}`);
           } catch (error) {
             console.log('Router push failed, using window.location');
-            window.location.href = `/matches?event=${eventId}`;
+            window.location.href = `/overview?event=${eventId}`;
           }
         }, 1000);
         return;
@@ -101,9 +101,22 @@ function LoadingContent() {
               />
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              MeetGenius
-            </span>
+            <div className="flex flex-col">
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                MeetGenius
+              </span>
+              <div className="flex items-center gap-2 text-xs text-white/60">
+                <span>powered by</span>
+                <Image
+                  src="/rtnw-logo.jpeg"
+                  alt="Ride The Next Wave"
+                  width={16}
+                  height={16}
+                  className="rounded-sm"
+                />
+                <span>Ride The Next Wave</span>
+              </div>
+            </div>
           </Link>
           <div className="flex items-center gap-3 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
             <div className="w-2 h-2 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-pulse shadow-lg shadow-yellow-400/50"></div>

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { Match } from '@/types';
+import { getProfileImage, getInitials } from '@/utils/imageMapper';
 
 export const dynamic = 'force-dynamic';
 
@@ -268,20 +269,32 @@ function MatchesContent() {
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 rounded-3xl blur-2xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
               <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
-                <div className="flex items-stretch gap-6 min-h-[600px]">
+                <div className="flex items-stretch gap-4 min-h-[600px]">
 
                   {/* Person 1 - Fixed Height Card */}
                   <div className="flex-1 group relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
-                    <div className="relative bg-black/30 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 h-full flex flex-col">
+                    <div className="relative bg-black/30 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 h-full flex flex-col">
 
                       {/* Header Section - Fixed Height */}
-                      <div className="text-center mb-8 flex-shrink-0">
+                      <div className="text-center mb-6 flex-shrink-0">
                         <div className="relative mb-6">
-                          <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl shadow-purple-500/25">
-                            <span className="text-3xl font-bold text-white">
-                              {currentMatch.attendee.split(' ').map(n => n[0]).join('')}
-                            </span>
+                          <div className="relative w-24 h-24 rounded-2xl overflow-hidden mx-auto shadow-2xl shadow-purple-500/25 bg-gradient-to-br from-purple-500 to-purple-600">
+                            <Image
+                              src={getProfileImage(currentMatch.attendee)}
+                              alt={currentMatch.attendee}
+                              fill
+                              className="object-cover"
+                              onError={(e) => {
+                                // Fallback to initials if image fails to load
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = 'none';
+                                const parent = target.parentElement;
+                                if (parent) {
+                                  parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-3xl">${getInitials(currentMatch.attendee)}</div>`;
+                                }
+                              }}
+                            />
                           </div>
                           <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 to-blue-400/20 rounded-2xl blur-lg opacity-50"></div>
                         </div>
@@ -315,6 +328,11 @@ function MatchesContent() {
                     </div>
                   </div>
 
+                  {/* Left Divider Line */}
+                  <div className="flex-shrink-0 flex items-center">
+                    <div className="w-px h-32 bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
+                  </div>
+
                   {/* Minimal Percentage - Centered */}
                   <div className="flex-shrink-0 flex items-center">
                     <div className="relative group">
@@ -327,18 +345,35 @@ function MatchesContent() {
                     </div>
                   </div>
 
+                  {/* Right Divider Line */}
+                  <div className="flex-shrink-0 flex items-center">
+                    <div className="w-px h-32 bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
+                  </div>
+
                   {/* Person 2 - Fixed Height Card */}
                   <div className="flex-1 group relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-green-500/10 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
-                    <div className="relative bg-black/30 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 h-full flex flex-col">
+                    <div className="relative bg-black/30 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 h-full flex flex-col">
 
                       {/* Header Section - Fixed Height */}
-                      <div className="text-center mb-8 flex-shrink-0">
+                      <div className="text-center mb-6 flex-shrink-0">
                         <div className="relative mb-6">
-                          <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl shadow-blue-500/25">
-                            <span className="text-3xl font-bold text-white">
-                              {currentMatch.match.split(' ').map(n => n[0]).join('')}
-                            </span>
+                          <div className="relative w-24 h-24 rounded-2xl overflow-hidden mx-auto shadow-2xl shadow-blue-500/25 bg-gradient-to-br from-blue-500 to-blue-600">
+                            <Image
+                              src={getProfileImage(currentMatch.match)}
+                              alt={currentMatch.match}
+                              fill
+                              className="object-cover"
+                              onError={(e) => {
+                                // Fallback to initials if image fails to load
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = 'none';
+                                const parent = target.parentElement;
+                                if (parent) {
+                                  parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-3xl">${getInitials(currentMatch.match)}</div>`;
+                                }
+                              }}
+                            />
                           </div>
                           <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-green-400/20 rounded-2xl blur-lg opacity-50"></div>
                         </div>

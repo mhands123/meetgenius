@@ -77,9 +77,22 @@ export default function EventsPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              MeetGenius
-            </span>
+            <div className="flex flex-col">
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                MeetGenius
+              </span>
+              <div className="flex items-center gap-2 text-xs text-white/60">
+                <span>powered by</span>
+                <Image
+                  src="/rtnw-logo.jpeg"
+                  alt="Ride The Next Wave"
+                  width={16}
+                  height={16}
+                  className="rounded-sm"
+                />
+                <span>Ride The Next Wave</span>
+              </div>
+            </div>
           </Link>
           <div className="flex items-center gap-3 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
             <span className="text-white/80 text-sm font-medium">Select Event</span>
@@ -258,20 +271,25 @@ export default function EventsPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-800 py-8 px-6 mt-12">
-        <div className="max-w-4xl mx-auto text-center text-gray-400 animate-fade-in-up">
-          <div className="flex justify-center items-center gap-3 mb-4">
+      <footer className="border-t border-white/10 py-8 px-6 mt-12">
+        <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
+          <div className="flex items-center justify-center gap-3 mb-4">
             <Image
-              src="/meetgenius-logo.png"
-              alt="MeetGenius Logo"
+              src="/rtnw-logo.jpeg"
+              alt="Ride The Next Wave"
               width={32}
               height={32}
-              className="rounded-lg animate-pulse"
+              className="rounded-lg"
             />
-            <span className="text-xl font-bold text-white">MeetGenius</span>
+            <div className="text-left">
+              <div className="text-white font-semibold">
+                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">MeetGenius</span>
+                <span className="text-white/80"> is powered by </span>
+                <span className="text-white">Ride The Next Wave</span>
+              </div>
+              <p className="text-white/60 text-sm">Transform your ideas into impactful digital solutions swiftly and effectively.</p>
+            </div>
           </div>
-          <p className="mb-2 text-sm">Powered by MeetGenius Intelligent Matchmaker</p>
-          <p className="text-xs">Creating meaningful connections through intelligent analysis</p>
         </div>
       </footer>
     </div>

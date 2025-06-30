@@ -11,6 +11,7 @@ export interface Profile {
   goal: string;
   email?: string;
   linkedin?: string;
+  image?: string;
 }
 
 export interface Match {

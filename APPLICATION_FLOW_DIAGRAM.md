@@ -7,9 +7,14 @@ graph TD
     A[🏠 Landing Page<br/>localhost:3000] --> B[📅 Event Selection<br/>localhost:3000/events]
 
     B --> C[⏳ AI Processing<br/>localhost:3000/loading]
-    C --> D[🎯 7 Matches Overview<br/>localhost:3000/matches]
+    C --> D[📋 Matches Overview<br/>localhost:3000/overview]
 
     D --> E{User Actions}
+    E -->|View Details| F[🎯 Individual Match Detail<br/>localhost:3000/match/[id]]
+    E -->|Carousel View| G[🎯 Detailed Matches<br/>localhost:3000/matches]
+
+    F --> H{Match Actions}
+    G --> I{User Actions}
     E -->|Search Matches| F[🔍 Filtered Results<br/>Search by name, title, skills]
     E -->|View Details| G[📋 Individual Match Detail<br/>localhost:3000/match/[id]]
     E -->|Presentation Mode| H[🎬 Slides Presentation<br/>localhost:3000/slides]
@@ -90,7 +95,7 @@ graph TD
 
 ### **Primary Flow (Recommended)**:
 ```
-Landing → Events → Loading → Matches → Details → Presentation
+Landing → Events → Loading → Overview → Match Details
 ```
 
 ### **Quick Access Flows**:
@@ -192,8 +197,9 @@ Presentation → Matches → Events
 / (Landing)
 /events (Event Selection)
 /loading?event=[id] (Processing)
-/matches?event=[id] (Overview)
-/match/[index]?event=[id] (Details)
+/overview?event=[id] (Matches Overview)
+/match/[index]?event=[id] (Match Details)
+/matches?event=[id] (Detailed Carousel View)
 /slides?event=[id] (Presentation)
 ```
 

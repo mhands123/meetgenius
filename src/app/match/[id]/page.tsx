@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useParams, useSearchParams, useRouter } from 'next/navigation';
 import { Match } from '@/types';
+import { getProfileImage, getInitials } from '@/utils/imageMapper';
 
 export default function MatchDetailPage() {
   const [match, setMatch] = useState<Match | null>(null);
@@ -24,8 +25,8 @@ export default function MatchDetailPage() {
     try {
       const response = await fetch(`/api/matches?event=${eventId}`);
       const data = await response.json();
-      
-      if (data.success) {
+
+      if (response.ok && data.matches) {
         setMatches(data.matches);
         const currentMatch = data.matches.find((_: Match, index: number) => index.toString() === matchId);
         setMatch(currentMatch || null);
@@ -81,11 +82,11 @@ export default function MatchDetailPage() {
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Match Not Found</h1>
-          <Link 
-            href={`/matches?event=${eventId}`}
+          <Link
+            href={`/overview?event=${eventId}`}
             className="text-purple-400 hover:text-purple-300 transition-colors text-sm"
           >
-            ← Back to Matches
+            ← Back to Overview
           </Link>
         </div>
       </div>
@@ -108,9 +109,22 @@ export default function MatchDetailPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              MeetGenius
-            </span>
+            <div className="flex flex-col">
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                MeetGenius
+              </span>
+              <div className="flex items-center gap-2 text-xs text-white/60">
+                <span>powered by</span>
+                <Image
+                  src="/rtnw-logo.jpeg"
+                  alt="Ride The Next Wave"
+                  width={16}
+                  height={16}
+                  className="rounded-sm"
+                />
+                <span>Ride The Next Wave</span>
+              </div>
+            </div>
           </Link>
           <div className="flex items-center gap-6">
             <div className="hidden md:flex items-center gap-3 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
@@ -119,8 +133,8 @@ export default function MatchDetailPage() {
               </span>
               <div className="w-2 h-2 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
             </div>
-            <Link 
-              href={`/matches?event=${eventId}`}
+            <Link
+              href={`/overview?event=${eventId}`}
               className="text-white/60 hover:text-white transition-colors text-xs font-medium"
             >
               ← Back to Overview
@@ -214,10 +228,22 @@ export default function MatchDetailPage() {
               <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-10 shadow-2xl hover:shadow-purple-500/10 transition-all duration-500">
                 <div className="text-center mb-8">
                   <div className="relative mb-6">
-                    <div className="w-28 h-28 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl shadow-purple-500/25">
-                      <span className="text-4xl font-bold text-white">
-                        {match.attendee.split(' ').map(n => n[0]).join('')}
-                      </span>
+                    <div className="relative w-28 h-28 rounded-2xl overflow-hidden mx-auto shadow-2xl shadow-purple-500/25 bg-gradient-to-br from-purple-500 to-purple-600">
+                      <Image
+                        src={getProfileImage(match.attendee)}
+                        alt={match.attendee}
+                        fill
+                        className="object-cover"
+                        onError={(e) => {
+                          // Fallback to initials if image fails to load
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const parent = target.parentElement;
+                          if (parent) {
+                            parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-4xl">${getInitials(match.attendee)}</div>`;
+                          }
+                        }}
+                      />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 to-blue-400/20 rounded-2xl blur-lg opacity-50"></div>
                   </div>
@@ -270,10 +296,22 @@ export default function MatchDetailPage() {
               <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-10 shadow-2xl hover:shadow-blue-500/10 transition-all duration-500">
                 <div className="text-center mb-8">
                   <div className="relative mb-6">
-                    <div className="w-28 h-28 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl shadow-blue-500/25">
-                      <span className="text-4xl font-bold text-white">
-                        {match.match.split(' ').map(n => n[0]).join('')}
-                      </span>
+                    <div className="relative w-28 h-28 rounded-2xl overflow-hidden mx-auto shadow-2xl shadow-blue-500/25 bg-gradient-to-br from-blue-500 to-blue-600">
+                      <Image
+                        src={getProfileImage(match.match)}
+                        alt={match.match}
+                        fill
+                        className="object-cover"
+                        onError={(e) => {
+                          // Fallback to initials if image fails to load
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const parent = target.parentElement;
+                          if (parent) {
+                            parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-4xl">${getInitials(match.match)}</div>`;
+                          }
+                        }}
+                      />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-green-400/20 rounded-2xl blur-lg opacity-50"></div>
                   </div>
@@ -345,8 +383,22 @@ export default function MatchDetailPage() {
                     <div className="flex items-center justify-between">
                       {/* Left Profile */}
                       <div className="flex flex-col items-center">
-                        <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-purple-500/25">
-                          <span className="text-white font-bold text-lg">{match.attendee.split(' ').map(n => n[0]).join('')}</span>
+                        <div className="relative w-20 h-20 rounded-2xl overflow-hidden mb-4 shadow-lg shadow-purple-500/25 bg-gradient-to-br from-purple-500 to-blue-500">
+                          <Image
+                            src={getProfileImage(match.attendee)}
+                            alt={match.attendee}
+                            fill
+                            className="object-cover"
+                            onError={(e) => {
+                              // Fallback to initials if image fails to load
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                              const parent = target.parentElement;
+                              if (parent) {
+                                parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-lg">${getInitials(match.attendee)}</div>`;
+                              }
+                            }}
+                          />
                         </div>
                         <h4 className="text-white font-semibold text-sm text-center">{match.attendee}</h4>
                         <p className="text-white/60 text-xs text-center">{match.attendeeProfile.title}</p>
@@ -371,8 +423,22 @@ export default function MatchDetailPage() {
 
                       {/* Right Profile */}
                       <div className="flex flex-col items-center">
-                        <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-blue-500/25">
-                          <span className="text-white font-bold text-lg">{match.match.split(' ').map(n => n[0]).join('')}</span>
+                        <div className="relative w-20 h-20 rounded-2xl overflow-hidden mb-4 shadow-lg shadow-blue-500/25 bg-gradient-to-br from-blue-500 to-green-500">
+                          <Image
+                            src={getProfileImage(match.match)}
+                            alt={match.match}
+                            fill
+                            className="object-cover"
+                            onError={(e) => {
+                              // Fallback to initials if image fails to load
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                              const parent = target.parentElement;
+                              if (parent) {
+                                parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-lg">${getInitials(match.match)}</div>`;
+                              }
+                            }}
+                          />
                         </div>
                         <h4 className="text-white font-semibold text-sm text-center">{match.match}</h4>
                         <p className="text-white/60 text-xs text-center">{match.matchProfile.title}</p>
@@ -1129,34 +1195,42 @@ export default function MatchDetailPage() {
             </div>
           </div>
 
-          {/* Navigation Controls */}
-          <div className="flex justify-center items-center gap-8 mb-16">
-            <button
-              onClick={() => navigateToMatch('prev')}
-              className="group w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 rounded-2xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-purple-500/25"
+          {/* Back to Overview CTA */}
+          <div className="text-center mb-16">
+            <Link
+              href={`/overview?event=${eventId}`}
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 rounded-2xl text-white font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25"
             >
-              <svg className="w-7 h-7 text-white group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
-            </button>
-
-            <div className="text-center px-6 py-3 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
-              <div className="text-xs text-white/60 mb-1 font-medium tracking-wide uppercase">Match Details</div>
-              <div className="text-xl font-bold text-white">
-                {getCurrentMatchIndex() + 1} of {matches.length}
-              </div>
-            </div>
-
-            <button
-              onClick={() => navigateToMatch('next')}
-              className="group w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 rounded-2xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-blue-500/25"
-            >
-              <svg className="w-7 h-7 text-white group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-              </svg>
-            </button>
+              Back to All Matches
+            </Link>
           </div>
         </div>
+
+        {/* Footer */}
+        <footer className="border-t border-white/10 py-8 px-6">
+          <div className="max-w-6xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Image
+                src="/rtnw-logo.jpeg"
+                alt="Ride The Next Wave"
+                width={32}
+                height={32}
+                className="rounded-lg"
+              />
+              <div className="text-left">
+                <div className="text-white font-semibold">
+                  <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">MeetGenius</span>
+                  <span className="text-white/80"> is powered by </span>
+                  <span className="text-white">Ride The Next Wave</span>
+                </div>
+                <p className="text-white/60 text-sm">Transform your ideas into impactful digital solutions swiftly and effectively.</p>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );

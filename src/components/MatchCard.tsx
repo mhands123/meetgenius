@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Match } from '@/types';
+import { getProfileImage, getInitials } from '@/utils/imageMapper';
 
 interface MatchCardProps {
   match: Match;
@@ -64,28 +66,70 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match, onRematch }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Attendee */}
         <div className="glass-card p-6 rounded-xl group-hover:bg-white/8 transition-all duration-300">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-semibold text-white">{match.attendee}</h3>
-            <span className={`text-xs font-medium px-3 py-1 rounded-full ${getPresenceColor(match.presenceStatus.attendee)} bg-white/10`}>
-              {getPresenceIcon(match.presenceStatus.attendee)} {match.presenceStatus.attendee}
-            </span>
+          <div className="flex items-start gap-4 mb-4">
+            <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 flex-shrink-0">
+              <Image
+                src={getProfileImage(match.attendee)}
+                alt={match.attendee}
+                fill
+                className="object-cover"
+                onError={(e) => {
+                  // Fallback to initials if image fails to load
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const parent = target.parentElement;
+                  if (parent) {
+                    parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-lg">${getInitials(match.attendee)}</div>`;
+                  }
+                }}
+              />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-lg font-semibold text-white truncate">{match.attendee}</h3>
+                <span className={`text-xs font-medium px-3 py-1 rounded-full ${getPresenceColor(match.presenceStatus.attendee)} bg-white/10 flex-shrink-0 ml-2`}>
+                  {getPresenceIcon(match.presenceStatus.attendee)} {match.presenceStatus.attendee}
+                </span>
+              </div>
+              <p className="text-sm text-white/80 mb-1 font-medium">{match.attendeeProfile.title}</p>
+              <p className="text-sm text-white/60">{match.attendeeProfile.company}</p>
+              <p className="text-xs text-white/50 mt-1">{match.attendeeProfile.location}</p>
+            </div>
           </div>
-          <p className="text-sm text-white/80 mb-1 font-medium">{match.attendeeProfile.title}</p>
-          <p className="text-sm text-white/60">{match.attendeeProfile.company}</p>
-          <p className="text-xs text-white/50 mt-2">{match.attendeeProfile.location}</p>
         </div>
 
         {/* Match */}
         <div className="glass-card p-6 rounded-xl group-hover:bg-white/8 transition-all duration-300">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-semibold text-white">{match.match}</h3>
-            <span className={`text-xs font-medium px-3 py-1 rounded-full ${getPresenceColor(match.presenceStatus.match)} bg-white/10`}>
-              {getPresenceIcon(match.presenceStatus.match)} {match.presenceStatus.match}
-            </span>
+          <div className="flex items-start gap-4 mb-4">
+            <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-gradient-to-br from-blue-500 to-green-500 flex-shrink-0">
+              <Image
+                src={getProfileImage(match.match)}
+                alt={match.match}
+                fill
+                className="object-cover"
+                onError={(e) => {
+                  // Fallback to initials if image fails to load
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const parent = target.parentElement;
+                  if (parent) {
+                    parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-lg">${getInitials(match.match)}</div>`;
+                  }
+                }}
+              />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-lg font-semibold text-white truncate">{match.match}</h3>
+                <span className={`text-xs font-medium px-3 py-1 rounded-full ${getPresenceColor(match.presenceStatus.match)} bg-white/10 flex-shrink-0 ml-2`}>
+                  {getPresenceIcon(match.presenceStatus.match)} {match.presenceStatus.match}
+                </span>
+              </div>
+              <p className="text-sm text-white/80 mb-1 font-medium">{match.matchProfile.title}</p>
+              <p className="text-sm text-white/60">{match.matchProfile.company}</p>
+              <p className="text-xs text-white/50 mt-1">{match.matchProfile.location}</p>
+            </div>
           </div>
-          <p className="text-sm text-white/80 mb-1 font-medium">{match.matchProfile.title}</p>
-          <p className="text-sm text-white/60">{match.matchProfile.company}</p>
-          <p className="text-xs text-white/50 mt-2">{match.matchProfile.location}</p>
         </div>
       </div>
 

@@ -21,9 +21,22 @@ export default function LandingPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              MeetGenius
-            </span>
+            <div className="flex flex-col">
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                MeetGenius
+              </span>
+              <div className="flex items-center gap-2 text-xs text-white/60">
+                <span>powered by</span>
+                <Image
+                  src="/rtnw-logo.jpeg"
+                  alt="Ride The Next Wave"
+                  width={16}
+                  height={16}
+                  className="rounded-sm"
+                />
+                <span>Ride The Next Wave</span>
+              </div>
+            </div>
           </Link>
           <div className="flex items-center gap-6">
             <Link href="#features" className="text-white/70 hover:text-white transition-all duration-200 text-sm font-medium">
@@ -190,22 +203,24 @@ export default function LandingPage() {
       {/* Premium Footer */}
       <footer className="border-t border-white/10 py-12 px-6 relative">
         <div className="max-w-5xl mx-auto text-center animate-fade-in-up">
-          <div className="flex justify-center items-center gap-4 mb-6">
-            <div className="relative">
-              <Image
-                src="/meetgenius-logo.png"
-                alt="MeetGenius Logo"
-                width={40}
-                height={40}
-                className="rounded-xl shadow-lg"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-xl"></div>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <Image
+              src="/rtnw-logo.jpeg"
+              alt="Ride The Next Wave"
+              width={40}
+              height={40}
+              className="rounded-lg"
+            />
+            <div className="text-left">
+              <div className="text-white font-semibold text-lg">
+                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">MeetGenius</span>
+                <span className="text-white/80"> is powered by </span>
+                <span className="text-white">Ride The Next Wave</span>
+              </div>
+              <p className="text-white/60 text-sm">Transform your ideas into impactful digital solutions swiftly and effectively.</p>
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              MeetGenius
-            </span>
           </div>
-          <p className="text-white/60 text-sm font-light">
+          <p className="text-white/40 text-xs font-light">
             &copy; 2025 MeetGenius. Enterprise AI networking platform.
           </p>
         </div>
