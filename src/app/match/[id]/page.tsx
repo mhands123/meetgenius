@@ -378,12 +378,12 @@ export default function MatchDetailPage() {
               <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 rounded-3xl blur-2xl"></div>
               <div className="relative glass-card p-12 rounded-3xl">
                 <div className="flex items-center justify-center">
-                  <div className="relative w-full max-w-4xl">
+                  <div className="relative w-full max-w-5xl">
                     {/* Connection Visualization */}
-                    <div className="flex items-center justify-between">
+                    <div className="grid grid-cols-12 gap-4 items-center">
                       {/* Left Profile */}
-                      <div className="flex flex-col items-center">
-                        <div className="relative w-20 h-20 rounded-2xl overflow-hidden mb-4 shadow-lg shadow-purple-500/25 bg-gradient-to-br from-purple-500 to-blue-500">
+                      <div className="col-span-3 flex flex-col items-center">
+                        <div className="relative w-24 h-24 rounded-2xl overflow-hidden mb-4 shadow-lg shadow-purple-500/25 bg-gradient-to-br from-purple-500 to-blue-500">
                           <Image
                             src={getProfileImage(match.attendee)}
                             alt={match.attendee}
@@ -400,21 +400,33 @@ export default function MatchDetailPage() {
                             }}
                           />
                         </div>
-                        <h4 className="text-white font-semibold text-sm text-center">{match.attendee}</h4>
-                        <p className="text-white/60 text-xs text-center">{match.attendeeProfile.title}</p>
+                        <h4 className="text-white font-semibold text-sm text-center max-w-[120px] truncate">{match.attendee}</h4>
+                        <p className="text-white/60 text-xs text-center max-w-[120px] leading-tight">{match.attendeeProfile.title}</p>
+                        <p className="text-white/40 text-xs text-center max-w-[120px] truncate mt-1">{match.attendeeProfile.company}</p>
                       </div>
 
                       {/* Connection Lines and Shared Factors */}
-                      <div className="flex-1 mx-8 relative">
+                      <div className="col-span-6 relative px-4">
                         <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-purple-400 via-yellow-400 to-blue-400 transform -translate-y-1/2"></div>
-                        <div className="flex justify-center items-center space-x-4">
+                        <div className="grid grid-cols-3 gap-6 items-center justify-items-center">
                           {match.whatYouShare.slice(0, 3).map((factor, idx) => (
-                            <div key={idx} className="relative">
-                              <div className="w-16 h-16 glass-card rounded-xl flex items-center justify-center group hover:scale-110 transition-transform duration-300">
+                            <div key={idx} className="relative flex flex-col items-center">
+                              <div className="w-16 h-16 glass-card rounded-xl flex items-center justify-center group hover:scale-110 transition-transform duration-300 mb-2">
                                 <div className="w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-pulse"></div>
                               </div>
-                              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-24">
-                                <p className="text-xs text-white/70 text-center font-medium">{factor}</p>
+                              <div className="w-24 min-h-[32px] flex items-center justify-center">
+                                <p className="text-xs text-white/70 text-center font-medium leading-tight">{factor}</p>
+                              </div>
+                            </div>
+                          ))}
+                          {/* Fill empty slots if less than 3 factors */}
+                          {Array.from({ length: Math.max(0, 3 - match.whatYouShare.length) }).map((_, idx) => (
+                            <div key={`empty-${idx}`} className="relative flex flex-col items-center">
+                              <div className="w-16 h-16 glass-card rounded-xl flex items-center justify-center opacity-30 mb-2">
+                                <div className="w-3 h-3 bg-gradient-to-r from-gray-400 to-gray-500 rounded-full"></div>
+                              </div>
+                              <div className="w-24 min-h-[32px] flex items-center justify-center">
+                                <p className="text-xs text-white/40 text-center font-medium leading-tight">Additional Match</p>
                               </div>
                             </div>
                           ))}
@@ -422,8 +434,8 @@ export default function MatchDetailPage() {
                       </div>
 
                       {/* Right Profile */}
-                      <div className="flex flex-col items-center">
-                        <div className="relative w-20 h-20 rounded-2xl overflow-hidden mb-4 shadow-lg shadow-blue-500/25 bg-gradient-to-br from-blue-500 to-green-500">
+                      <div className="col-span-3 flex flex-col items-center">
+                        <div className="relative w-24 h-24 rounded-2xl overflow-hidden mb-4 shadow-lg shadow-blue-500/25 bg-gradient-to-br from-blue-500 to-green-500">
                           <Image
                             src={getProfileImage(match.match)}
                             alt={match.match}
@@ -440,8 +452,9 @@ export default function MatchDetailPage() {
                             }}
                           />
                         </div>
-                        <h4 className="text-white font-semibold text-sm text-center">{match.match}</h4>
-                        <p className="text-white/60 text-xs text-center">{match.matchProfile.title}</p>
+                        <h4 className="text-white font-semibold text-sm text-center max-w-[120px] truncate">{match.match}</h4>
+                        <p className="text-white/60 text-xs text-center max-w-[120px] leading-tight">{match.matchProfile.title}</p>
+                        <p className="text-white/40 text-xs text-center max-w-[120px] truncate mt-1">{match.matchProfile.company}</p>
                       </div>
                     </div>
                   </div>
