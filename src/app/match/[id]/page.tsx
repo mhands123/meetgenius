@@ -158,7 +158,7 @@ export default function MatchDetailPage() {
       </nav>
 
       {/* Main Content */}
-      <div className="pt-28 pb-16 px-6">
+      <div className="pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           
           {/* Header */}
@@ -173,7 +173,7 @@ export default function MatchDetailPage() {
               </div>
             </div>
             
-            <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent">
                 Perfect Match
               </span>
@@ -375,7 +375,7 @@ export default function MatchDetailPage() {
           {/* 1. Why We Matched Them - Enhanced Visual Connection */}
           <div className="mb-20 animate-fade-in-up animation-delay-600">
             <div className="text-center mb-12">
-              <h3 className="text-4xl md:text-5xl font-bold mb-4">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
                 <span className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent">
                   Why We Matched Them
                 </span>
@@ -392,8 +392,73 @@ export default function MatchDetailPage() {
               <div className="relative glass-card p-12 rounded-3xl">
                 <div className="flex items-center justify-center">
                   <div className="relative w-full max-w-5xl">
-                    {/* Connection Visualization */}
-                    <div className="grid grid-cols-12 gap-4 items-center">
+                    {/* Mobile Layout */}
+                    <div className="block md:hidden">
+                      <div className="space-y-6">
+                        {/* Person 1 */}
+                        <div className="flex flex-col items-center">
+                          <div className="relative w-20 h-20 rounded-2xl overflow-hidden mb-3 shadow-lg shadow-purple-500/25 bg-gradient-to-br from-purple-500 to-blue-500">
+                            <Image
+                              src={getProfileImage(match.attendee)}
+                              alt={match.attendee}
+                              fill
+                              className="object-cover"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = 'none';
+                                const parent = target.parentElement;
+                                if (parent) {
+                                  parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-lg">${getInitials(match.attendee)}</div>`;
+                                }
+                              }}
+                            />
+                          </div>
+                          <h4 className="text-white font-semibold text-sm text-center">{match.attendee}</h4>
+                          <p className="text-white/60 text-xs text-center">{match.attendeeProfile.title}</p>
+                          <p className="text-white/40 text-xs text-center">{match.attendeeProfile.company}</p>
+                        </div>
+
+                        {/* Connection Factors */}
+                        <div className="flex justify-center">
+                          <div className="grid grid-cols-3 gap-4 max-w-xs">
+                            {match.whatYouShare.slice(0, 3).map((factor, idx) => (
+                              <div key={idx} className="flex flex-col items-center">
+                                <div className="w-12 h-12 glass-card rounded-xl flex items-center justify-center mb-2">
+                                  <div className="w-2 h-2 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-pulse"></div>
+                                </div>
+                                <p className="text-xs text-white/70 text-center font-medium leading-tight">{factor}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Person 2 */}
+                        <div className="flex flex-col items-center">
+                          <div className="relative w-20 h-20 rounded-2xl overflow-hidden mb-3 shadow-lg shadow-blue-500/25 bg-gradient-to-br from-blue-500 to-green-500">
+                            <Image
+                              src={getProfileImage(match.match)}
+                              alt={match.match}
+                              fill
+                              className="object-cover"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = 'none';
+                                const parent = target.parentElement;
+                                if (parent) {
+                                  parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-lg">${getInitials(match.match)}</div>`;
+                                }
+                              }}
+                            />
+                          </div>
+                          <h4 className="text-white font-semibold text-sm text-center">{match.match}</h4>
+                          <p className="text-white/60 text-xs text-center">{match.matchProfile.title}</p>
+                          <p className="text-white/40 text-xs text-center">{match.matchProfile.company}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Desktop Layout */}
+                    <div className="hidden md:grid grid-cols-12 gap-4 items-center">
                       {/* Left Profile */}
                       <div className="col-span-3 flex flex-col items-center">
                         <div className="relative w-24 h-24 rounded-2xl overflow-hidden mb-4 shadow-lg shadow-purple-500/25 bg-gradient-to-br from-purple-500 to-blue-500">
@@ -403,7 +468,6 @@ export default function MatchDetailPage() {
                             fill
                             className="object-cover"
                             onError={(e) => {
-                              // Fallback to initials if image fails to load
                               const target = e.target as HTMLImageElement;
                               target.style.display = 'none';
                               const parent = target.parentElement;
@@ -455,7 +519,6 @@ export default function MatchDetailPage() {
                             fill
                             className="object-cover"
                             onError={(e) => {
-                              // Fallback to initials if image fails to load
                               const target = e.target as HTMLImageElement;
                               target.style.display = 'none';
                               const parent = target.parentElement;

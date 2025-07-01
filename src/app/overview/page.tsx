@@ -96,20 +96,21 @@ function OverviewContent() {
               </div>
             </div>
           </Link>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 md:gap-6">
             <div className="hidden md:flex items-center gap-3 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
               <span className="text-white/80 text-sm font-medium">
                 {filteredMatches.length} Strategic Connections
               </span>
               <div className="w-2 h-2 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
             </div>
-            <div className="flex items-center gap-4">
-              <Link href={`/matches?event=${eventId}`} className="text-white/60 hover:text-white transition-colors text-xs font-medium">
+            <div className="flex items-center gap-2 md:gap-4">
+              <Link href={`/matches?event=${eventId}`} className="text-white/60 hover:text-white transition-colors text-xs font-medium hidden sm:block">
                 Carousel View
               </Link>
-              <div className="w-px h-4 bg-white/20"></div>
+              <div className="w-px h-4 bg-white/20 hidden sm:block"></div>
               <Link href="/events" className="text-white/60 hover:text-white transition-colors text-xs font-medium">
-                ← Back to Events
+                <span className="hidden sm:inline">← Back to Events</span>
+                <span className="sm:hidden">← Back</span>
               </Link>
             </div>
           </div>
@@ -117,23 +118,23 @@ function OverviewContent() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-6">
+      <section className="pt-24 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto text-center">
           <div className="animate-fade-in-up">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                 Strategic Connections
               </span>
             </h1>
-            <p className="text-xl text-white/70 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-white/70 mb-8 max-w-3xl mx-auto leading-relaxed">
               Ride the Next Wave Demo Night
             </p>
-            <div className="flex items-center justify-center gap-4 text-sm text-white/60">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-white/60">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                 <span>{matches.length} High-Quality Matches</span>
               </div>
-              <div className="w-px h-4 bg-white/20"></div>
+              <div className="w-px h-4 bg-white/20 hidden sm:block"></div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
                 <span>AI-Powered Analysis</span>
@@ -144,19 +145,19 @@ function OverviewContent() {
       </section>
 
       {/* Search Section */}
-      <section className="pb-12 px-6">
+      <section className="pb-8 sm:pb-12 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="flex justify-center mb-12">
-            <div className="relative max-w-md w-full">
+          <div className="flex justify-center mb-8 md:mb-12">
+            <div className="relative max-w-md w-full mx-4 sm:mx-0">
               <input
                 type="text"
                 placeholder="Search matches by name, title, or skills..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-6 py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl text-white placeholder-white/50 focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300"
+                className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl text-white placeholder-white/50 focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300 text-sm sm:text-base"
               />
-              <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
-                <svg className="w-5 h-5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
@@ -166,7 +167,7 @@ function OverviewContent() {
       </section>
 
       {/* Matches List */}
-      <section className="pb-20 px-6">
+      <section className="pb-16 sm:pb-20 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {filteredMatches.length === 0 ? (
             <div className="text-center py-20">
@@ -231,8 +232,69 @@ function MatchOverviewCard({ match, index, eventId }: MatchOverviewCardProps) {
       className="block group animate-fade-in-up"
       style={{ animationDelay: `${index * 50}ms` }}
     >
-      <div className="bg-gradient-to-r from-purple-900/30 to-purple-800/20 backdrop-blur-sm border border-purple-700/30 rounded-xl p-6 hover:border-purple-500/50 transition-all duration-300 cursor-pointer">
-        <div className="grid grid-cols-12 gap-4 items-center">
+      <div className="bg-gradient-to-r from-purple-900/30 to-purple-800/20 backdrop-blur-sm border border-purple-700/30 rounded-xl p-4 md:p-6 hover:border-purple-500/50 transition-all duration-300 cursor-pointer">
+        {/* Mobile Layout */}
+        <div className="block md:hidden">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
+                <Image
+                  src={getProfileImage(match.attendee)}
+                  alt={match.attendee}
+                  fill
+                  className="object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-sm">${getInitials(match.attendee)}</div>`;
+                    }
+                  }}
+                />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h3 className="font-semibold text-white text-sm truncate">{match.attendee}</h3>
+                <p className="text-gray-300 text-xs truncate">{match.attendeeProfile.title}</p>
+              </div>
+            </div>
+            <div className="bg-green-600 text-white px-3 py-1 rounded-lg font-bold text-sm flex-shrink-0">
+              {Math.round(match.matchScore * 100)}%
+            </div>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
+                <Image
+                  src={getProfileImage(match.match)}
+                  alt={match.match}
+                  fill
+                  className="object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-sm">${getInitials(match.match)}</div>`;
+                    }
+                  }}
+                />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h3 className="font-semibold text-white text-sm truncate">{match.match}</h3>
+                <p className="text-gray-300 text-xs truncate">{match.matchProfile.title}</p>
+              </div>
+            </div>
+            <div className="text-right flex-shrink-0">
+              <p className="text-gray-300 text-xs font-medium truncate max-w-[80px]">
+                {match.whatYouShare[0] || 'Common interests'}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden md:grid grid-cols-12 gap-4 items-center">
           {/* Person 1 - Fixed width columns */}
           <div className="col-span-4 flex items-center gap-4">
             <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
