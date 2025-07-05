@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { Match } from '@/types';
 import { getProfileImage, getInitials } from '@/utils/imageMapper';
+import StatusChip from '@/components/StatusChip';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,6 +20,7 @@ function MatchesContent() {
   const [filteredMatches, setFilteredMatches] = useState<Match[]>([]);
   const searchParams = useSearchParams();
   const eventId = searchParams.get('event');
+  const [updatingStatus, setUpdatingStatus] = useState<string | null>(null);
 
   const loadMatches = async () => {
     try {
@@ -122,6 +124,38 @@ function MatchesContent() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  const handleStatusUpdate = async (profileId: string, newStatus: 'Present' | 'Not Arrived' | 'Checked Out') => {
+    setUpdatingStatus(profileId);
+    try {
+      const response = await fetch('/api/attendees/status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          profileId,
+          status: newStatus,
+          eventId
+        }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        
+        // Update matches with new profile status
+        setMatches(prev => prev.map(match => ({
+          ...match,
+          attendeeProfile: match.attendeeProfile.id === profileId ? result.profile : match.attendeeProfile,
+          matchProfile: match.matchProfile.id === profileId ? result.profile : match.matchProfile
+        })));
+      }
+    } catch (error) {
+      console.error('Error updating status:', error);
+    } finally {
+      setUpdatingStatus(null);
+    }
+  };
 
   if (loading) {
     return (
@@ -280,6 +314,17 @@ function MatchesContent() {
                       <div className="text-center mb-6 flex-shrink-0">
                         <div className="relative mb-6">
                           <div className="relative w-24 h-24 rounded-2xl overflow-hidden mx-auto shadow-2xl shadow-purple-500/25 bg-gradient-to-br from-purple-500 to-purple-600">
+                            {/* Status Chip positioned over profile image */}
+                            <div className="absolute -top-2 -right-2 z-10">
+                              <StatusChip
+                                status={currentMatch.attendeeProfile.status || 'Not Arrived'}
+                                onStatusChange={(newStatus) => handleStatusUpdate(currentMatch.attendeeProfile.id, newStatus)}
+                                isLoading={updatingStatus === currentMatch.attendeeProfile.id}
+                                size="sm"
+                                showIcon={true}
+                                interactive={true}
+                              />
+                            </div>
                             <Image
                               src={getProfileImage(currentMatch.attendee)}
                               alt={currentMatch.attendee}
@@ -359,6 +404,17 @@ function MatchesContent() {
                       <div className="text-center mb-6 flex-shrink-0">
                         <div className="relative mb-6">
                           <div className="relative w-24 h-24 rounded-2xl overflow-hidden mx-auto shadow-2xl shadow-blue-500/25 bg-gradient-to-br from-blue-500 to-blue-600">
+                            {/* Status Chip positioned over profile image */}
+                            <div className="absolute -top-2 -right-2 z-10">
+                              <StatusChip
+                                status={currentMatch.matchProfile.status || 'Not Arrived'}
+                                onStatusChange={(newStatus) => handleStatusUpdate(currentMatch.matchProfile.id, newStatus)}
+                                isLoading={updatingStatus === currentMatch.matchProfile.id}
+                                size="sm"
+                                showIcon={true}
+                                interactive={true}
+                              />
+                            </div>
                             <Image
                               src={getProfileImage(currentMatch.match)}
                               alt={currentMatch.match}
