@@ -72,7 +72,7 @@ export default function AttendeeCard({
               isLoading={isUpdating}
               size="sm"
               showIcon={true}
-              interactive={!!onStatusUpdate}
+              interactive={onStatusUpdate !== undefined}
             />
           </div>
         </div>
@@ -122,7 +122,7 @@ export default function AttendeeCard({
               isLoading={isUpdating}
               size="md"
               showIcon={true}
-              interactive={!!onStatusUpdate}
+              interactive={onStatusUpdate !== undefined}
             />
           </div>
         </div>
