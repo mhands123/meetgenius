@@ -304,9 +304,11 @@ function AttendeesContent() {
 
 export default function AttendeesPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-black flex items-center justify-center">
-      <div className="text-white">Loading attendees...</div>
-    </Suspense>}>
+    <Suspense fallback={
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-white">Loading attendees...</div>
+      </div>
+    }>
       <AttendeesContent />
     </Suspense>
   );
