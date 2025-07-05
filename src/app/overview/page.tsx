@@ -219,7 +219,14 @@ function OverviewContent() {
           ) : (
             <div className="space-y-6">
               {filteredMatches.map((match, index) => (
-                <MatchOverviewCard key={index} match={match} index={index} eventId={eventId} />
+                <MatchOverviewCard 
+                  key={index} 
+                  match={match} 
+                  index={index} 
+                  eventId={eventId}
+                  updatingStatus={updatingStatus}
+                  onStatusUpdate={handleStatusUpdate}
+                />
               ))}
             </div>
           )}
@@ -257,9 +264,11 @@ interface MatchOverviewCardProps {
   match: Match;
   index: number;
   eventId: string | null;
+  updatingStatus: string | null;
+  onStatusUpdate: (profileId: string, newStatus: 'Present' | 'Not Arrived' | 'Checked Out') => Promise<void>;
 }
 
-function MatchOverviewCard({ match, index, eventId }: MatchOverviewCardProps) {
+function MatchOverviewCard({ match, index, eventId, updatingStatus, onStatusUpdate }: MatchOverviewCardProps) {
   // Create a unique identifier for the match
   const matchId = encodeURIComponent(`${match.attendee}-${match.match}`);
 
@@ -339,7 +348,7 @@ function MatchOverviewCard({ match, index, eventId }: MatchOverviewCardProps) {
               <div className="absolute -top-1 -right-1 z-10">
                 <StatusChip
                   status={match.attendeeProfile.status || 'Not Arrived'}
-                  onStatusChange={(newStatus) => handleStatusUpdate(match.attendeeProfile.id, newStatus)}
+                  onStatusChange={(newStatus) => onStatusUpdate(match.attendeeProfile.id, newStatus)}
                   isLoading={updatingStatus === match.attendeeProfile.id}
                   size="sm"
                   showIcon={true}
@@ -378,7 +387,7 @@ function MatchOverviewCard({ match, index, eventId }: MatchOverviewCardProps) {
               <div className="absolute -top-1 -right-1 z-10">
                 <StatusChip
                   status={match.matchProfile.status || 'Not Arrived'}
-                  onStatusChange={(newStatus) => handleStatusUpdate(match.matchProfile.id, newStatus)}
+                  onStatusChange={(newStatus) => onStatusUpdate(match.matchProfile.id, newStatus)}
                   isLoading={updatingStatus === match.matchProfile.id}
                   size="sm"
                   showIcon={true}
