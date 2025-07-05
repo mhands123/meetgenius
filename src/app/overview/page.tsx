@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { Match } from '@/types';
 import { getProfileImage, getInitials } from '@/utils/imageMapper';
+import StatusChip from '@/components/StatusChip';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,6 +17,7 @@ function OverviewContent() {
   const [filteredMatches, setFilteredMatches] = useState<Match[]>([]);
   const searchParams = useSearchParams();
   const eventId = searchParams.get('event');
+  const [updatingStatus, setUpdatingStatus] = useState<string | null>(null);
 
   useEffect(() => {
     loadMatches();
@@ -37,6 +39,38 @@ function OverviewContent() {
       setFilteredMatches(filtered);
     }
   }, [searchQuery, matches]);
+
+  const handleStatusUpdate = async (profileId: string, newStatus: 'Present' | 'Not Arrived' | 'Checked Out') => {
+    setUpdatingStatus(profileId);
+    try {
+      const response = await fetch('/api/attendees/status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          profileId,
+          status: newStatus,
+          eventId
+        }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        
+        // Update matches with new profile status
+        setMatches(prev => prev.map(match => ({
+          ...match,
+          attendeeProfile: match.attendeeProfile.id === profileId ? result.profile : match.attendeeProfile,
+          matchProfile: match.matchProfile.id === profileId ? result.profile : match.matchProfile
+        })));
+      }
+    } catch (error) {
+      console.error('Error updating status:', error);
+    } finally {
+      setUpdatingStatus(null);
+    }
+  };
 
   const loadMatches = async () => {
     try {
@@ -106,6 +140,9 @@ function OverviewContent() {
             <div className="flex items-center gap-2 md:gap-4">
               <Link href={`/matches?event=${eventId}`} className="text-white/60 hover:text-white transition-colors text-xs font-medium hidden sm:block">
                 Carousel View
+              </Link>
+              <Link href={`/attendees?event=${eventId}`} className="text-white/60 hover:text-white transition-colors text-xs font-medium hidden sm:block">
+                Attendee Status
               </Link>
               <div className="w-px h-4 bg-white/20 hidden sm:block"></div>
               <Link href="/events" className="text-white/60 hover:text-white transition-colors text-xs font-medium">
@@ -298,6 +335,17 @@ function MatchOverviewCard({ match, index, eventId }: MatchOverviewCardProps) {
           {/* Person 1 - Fixed width columns */}
           <div className="col-span-4 flex items-center gap-4">
             <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
+              {/* Status Chip positioned over profile image */}
+              <div className="absolute -top-1 -right-1 z-10">
+                <StatusChip
+                  status={match.attendeeProfile.status || 'Not Arrived'}
+                  onStatusChange={(newStatus) => handleStatusUpdate(match.attendeeProfile.id, newStatus)}
+                  isLoading={updatingStatus === match.attendeeProfile.id}
+                  size="sm"
+                  showIcon={true}
+                  interactive={true}
+                />
+              </div>
               <Image
                 src={getProfileImage(match.attendee)}
                 alt={match.attendee}
@@ -326,6 +374,17 @@ function MatchOverviewCard({ match, index, eventId }: MatchOverviewCardProps) {
           {/* Person 2 - Fixed width columns */}
           <div className="col-span-4 flex items-center gap-4">
             <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
+              {/* Status Chip positioned over profile image */}
+              <div className="absolute -top-1 -right-1 z-10">
+                <StatusChip
+                  status={match.matchProfile.status || 'Not Arrived'}
+                  onStatusChange={(newStatus) => handleStatusUpdate(match.matchProfile.id, newStatus)}
+                  isLoading={updatingStatus === match.matchProfile.id}
+                  size="sm"
+                  showIcon={true}
+                  interactive={true}
+                />
+              </div>
               <Image
                 src={getProfileImage(match.match)}
                 alt={match.match}

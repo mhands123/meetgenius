@@ -12,6 +12,9 @@ export interface Profile {
   email?: string;
   linkedin?: string;
   image?: string;
+  status?: 'Present' | 'Not Arrived' | 'Checked Out';
+  checkedInAt?: string;
+  lastUpdated?: string;
 }
 
 export interface Match {
@@ -27,6 +30,19 @@ export interface Match {
     attendee: 'Present' | 'Just Arrived' | 'Arriving Soon' | 'Not Yet Arrived';
     match: 'Present' | 'Just Arrived' | 'Arriving Soon' | 'Not Yet Arrived';
   };
+}
+
+export interface CheckInResponse {
+  success: boolean;
+  profile: Profile;
+  message: string;
+  timestamp: string;
+}
+
+export interface StatusUpdateRequest {
+  profileId: string;
+  status: 'Present' | 'Not Arrived' | 'Checked Out';
+  eventId?: string;
 }
 
 export interface MatchingFactors {
