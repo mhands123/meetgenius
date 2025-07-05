@@ -8,8 +8,6 @@ import { Profile } from '@/types';
 import AttendeeCard from '@/components/AttendeeCard';
 import StatusChip from '@/components/StatusChip';
 
-export const dynamic = 'force-dynamic';
-
 function AttendeesContent() {
   const [attendees, setAttendees] = useState<Profile[]>([]);
   const [loading, setLoading] = useState(true);
