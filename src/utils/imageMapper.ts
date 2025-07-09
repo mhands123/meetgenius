@@ -22,6 +22,8 @@ export function getProfileImage(name: string): string {
     'Peter Somerville': '/images/peter-somerville.jpeg',
     'Nate Donovan': '/images/nate-donovan.jpeg',
     'Kate Kuehl': '/images/kate-kuehl.jpeg',
+    'Ben Theis': '/images/ben-theis.jpeg',
+    'Taylor Birkeland': '/images/taylor-birkeland.jpeg',
   };
 
   return nameToImageMap[name] || '/images/default-avatar.svg';
