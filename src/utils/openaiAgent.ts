@@ -85,7 +85,10 @@ Advanced Analysis Guidelines:
       const content = response.choices[0]?.message?.content;
       if (!content) throw new Error('No response from OpenAI');
 
-      const profile = JSON.parse(content) as Profile;
+      // Remove Markdown code block markers if present
+      const cleanedContent = content.replace(/^```json\s*|^```\s*|```$/gim, '').trim();
+
+      const profile = JSON.parse(cleanedContent) as Profile;
       profile.id = `profile-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
       // Generate additional AI insights using specialized agents
@@ -100,13 +103,17 @@ Advanced Analysis Guidelines:
   }
 
   async generateMatches(profiles: Profile[]): Promise<Match[]> {
-    const prompt = `
+    const batchSize = 5;
+    let allMatches: Match[] = [];
+    for (let i = 0; i < profiles.length; i += batchSize) {
+      const batch = profiles.slice(i, i + batchSize);
+      const prompt = `
 You are the MeetGenius Matching Agent for AI DEMO NIGHT on July 9, 2025.
 
-Create optimal matches for these ${profiles.length} attendees. Each person should get exactly ONE high-quality match.
+Create optimal matches for these ${batch.length} attendees. Each person should get exactly ONE high-quality match.
 
 Profiles:
-${JSON.stringify(profiles, null, 2)}
+${JSON.stringify(batch, null, 2)}
 
 Matching Criteria:
 1. Domain/industry overlap (same field = good)
@@ -144,41 +151,36 @@ Return ONLY a JSON array of match objects in this format:
     }
   }
 ]`;
-
-    try {
-      const response = await this.client.chat.completions.create({
-        model: "gpt-4",
-        messages: [{ role: "user", content: prompt }],
-        temperature: 0.4,
-        max_tokens: 3000,
-      });
-
-      const content = response.choices[0]?.message?.content;
-      if (!content) throw new Error('No response from OpenAI');
-
-      const rawMatches = JSON.parse(content);
-      
-      // Enrich matches with full profile data
-      const enrichedMatches: Match[] = rawMatches.map((match: any) => {
-        const attendeeProfile = profiles.find(p => p.name === match.attendee);
-        const matchProfile = profiles.find(p => p.name === match.match);
-        
-        if (!attendeeProfile || !matchProfile) {
-          throw new Error(`Profile not found for match: ${match.attendee} <-> ${match.match}`);
-        }
-
-        return {
-          ...match,
-          attendeeProfile,
-          matchProfile
-        };
-      });
-
-      return enrichedMatches;
-    } catch (error) {
-      console.error('Error generating matches:', error);
-      throw error;
+      try {
+        const response = await this.client.chat.completions.create({
+          model: "gpt-4",
+          messages: [{ role: "user", content: prompt }],
+          temperature: 0.4,
+          max_tokens: 3000,
+        });
+        const content = response.choices[0]?.message?.content;
+        if (!content) throw new Error('No response from OpenAI');
+        const rawMatches = JSON.parse(content);
+        // Enrich matches with full profile data
+        const enrichedMatches: Match[] = rawMatches.map((match: any) => {
+          const attendeeProfile = batch.find(p => p.name === match.attendee);
+          const matchProfile = batch.find(p => p.name === match.match);
+          if (!attendeeProfile || !matchProfile) {
+            throw new Error(`Profile not found for match: ${match.attendee} <-> ${match.match}`);
+          }
+          return {
+            ...match,
+            attendeeProfile,
+            matchProfile
+          };
+        });
+        allMatches = allMatches.concat(enrichedMatches);
+      } catch (error) {
+        console.error('Error generating matches for batch:', error);
+        throw error;
+      }
     }
+    return allMatches;
   }
 
   // 🧠 AI-POWERED CONVERSATION ASSISTANCE
@@ -276,7 +278,10 @@ Analyze based on:
       const content = response.choices[0]?.message?.content;
       if (!content) throw new Error('No response from OpenAI');
 
-      return JSON.parse(content) as PersonalityInsights;
+      // Remove Markdown code block markers if present
+      const cleanedContent = content.replace(/^```json\s*|^```\s*|```$/gim, '').trim();
+
+      return JSON.parse(cleanedContent) as PersonalityInsights;
     } catch (error) {
       console.error('Error analyzing personality:', error);
       throw error;

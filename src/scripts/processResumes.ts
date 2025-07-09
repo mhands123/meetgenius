@@ -11,7 +11,10 @@ async function main() {
 
   try {
     // Initialize the matching engine
-    const resumesPath = path.resolve(__dirname, '../../..'); // Points to the parent directory with PDFs
+    const resumesPath = path.resolve(__dirname, '..');
+    console.log('🔍 Looking for PDF files in:', resumesPath);
+    const filesInDir = fs.readdirSync(resumesPath);
+    console.log('📂 Files found:', filesInDir);
     const matchingEngine = new MatchingEngine(process.env.OPENAI_API_KEY, resumesPath);
 
     // Step 1: Process all resumes
@@ -77,10 +80,10 @@ async function main() {
     });
 
     console.log('\n🎉 Processing complete! Ready for AI Demo Night!');
-    console.log('\n🚀 Next steps:');
+    console.log('\nlhost:3000');
+    console.log('   3. Demo the matc🚀 Next steps:');
     console.log('   1. Run: npm run dev');
-    console.log('   2. Open: http://localhost:3000');
-    console.log('   3. Demo the matches at the event!');
+    console.log('   2. Open: http://locahes at the event!');
 
   } catch (error) {
     console.error('❌ Error processing resumes:', error);
