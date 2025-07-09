@@ -343,9 +343,24 @@ function MatchOverviewCard({ match, index, eventId, updatingStatus, onStatusUpda
         <div className="hidden md:grid grid-cols-12 gap-4 items-center">
           {/* Person 1 - Fixed width columns */}
           <div className="col-span-4 flex items-center gap-4">
-            <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
-              {/* Status Chip positioned over profile image */}
-              <div className="absolute -top-1 -right-1 z-10">
+            <div className="flex flex-col items-center">
+              <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
+                <Image
+                  src={getProfileImage(match.attendee)}
+                  alt={match.attendee}
+                  fill
+                  className="object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML = `<div class=\"w-full h-full flex items-center justify-center text-white font-bold text-lg\">${getInitials(match.attendee)}</div>`;
+                    }
+                  }}
+                />
+              </div>
+              <div className="mt-2">
                 <StatusChip
                   status={match.attendeeProfile.status || 'Not Arrived'}
                   onStatusChange={(newStatus) => onStatusUpdate(match.attendeeProfile.id, newStatus)}
@@ -355,20 +370,6 @@ function MatchOverviewCard({ match, index, eventId, updatingStatus, onStatusUpda
                   interactive={true}
                 />
               </div>
-              <Image
-                src={getProfileImage(match.attendee)}
-                alt={match.attendee}
-                fill
-                className="object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  const parent = target.parentElement;
-                  if (parent) {
-                    parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-lg">${getInitials(match.attendee)}</div>`;
-                  }
-                }}
-              />
             </div>
             <div className="min-w-0 flex-1">
               <h3 className="font-semibold text-white text-base truncate">{match.attendee}</h3>
@@ -382,9 +383,24 @@ function MatchOverviewCard({ match, index, eventId, updatingStatus, onStatusUpda
 
           {/* Person 2 - Fixed width columns */}
           <div className="col-span-4 flex items-center gap-4">
-            <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
-              {/* Status Chip positioned over profile image */}
-              <div className="absolute -top-1 -right-1 z-10">
+            <div className="flex flex-col items-center">
+              <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
+                <Image
+                  src={getProfileImage(match.match)}
+                  alt={match.match}
+                  fill
+                  className="object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML = `<div class=\"w-full h-full flex items-center justify-center text-white font-bold text-lg\">${getInitials(match.match)}</div>`;
+                    }
+                  }}
+                />
+              </div>
+              <div className="mt-2">
                 <StatusChip
                   status={match.matchProfile.status || 'Not Arrived'}
                   onStatusChange={(newStatus) => onStatusUpdate(match.matchProfile.id, newStatus)}
@@ -394,20 +410,6 @@ function MatchOverviewCard({ match, index, eventId, updatingStatus, onStatusUpda
                   interactive={true}
                 />
               </div>
-              <Image
-                src={getProfileImage(match.match)}
-                alt={match.match}
-                fill
-                className="object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  const parent = target.parentElement;
-                  if (parent) {
-                    parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-lg">${getInitials(match.match)}</div>`;
-                  }
-                }}
-              />
             </div>
             <div className="min-w-0 flex-1">
               <h3 className="font-semibold text-white text-base truncate">{match.match}</h3>
