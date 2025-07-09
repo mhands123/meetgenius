@@ -48,7 +48,7 @@ export default function AttendeeCard({
   if (compact) {
     return (
       <div className="flex items-center gap-3 p-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl hover:bg-white/8 transition-all duration-300">
-        <div className="relative">
+        <div className="flex flex-col items-center relative">
           <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 flex-shrink-0">
             <Image
               src={getProfileImage(profile.name)}
@@ -60,12 +60,12 @@ export default function AttendeeCard({
                 target.style.display = 'none';
                 const parent = target.parentElement;
                 if (parent) {
-                  parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-white font-bold text-sm">${getInitials(profile.name)}</div>`;
+                  parent.innerHTML = `<div class=\"w-full h-full flex items-center justify-center text-white font-bold text-sm\">${getInitials(profile.name)}</div>`;
                 }
               }}
             />
           </div>
-          <div className="absolute -bottom-1 -right-1">
+          <div className="mt-1">
             <StatusChip
               status={currentStatus}
               onStatusChange={onStatusUpdate ? handleStatusChange : undefined}
@@ -95,8 +95,8 @@ export default function AttendeeCard({
   return (
     <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 hover:bg-white/8 transition-all duration-300 group">
       <div className="flex items-start gap-4">
-        {/* Profile Image with Status Overlay */}
-        <div className="relative">
+        {/* Profile Image with Status below */}
+        <div className="flex flex-col items-center relative">
           <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 flex-shrink-0 shadow-lg">
             <Image
               src={getProfileImage(profile.name)}
@@ -114,8 +114,7 @@ export default function AttendeeCard({
             />
           </div>
           
-          {/* Status Chip positioned adjacent to image */}
-          <div className="absolute -top-2 -right-2">
+          <div className="mt-2">
             <StatusChip
               status={currentStatus}
               onStatusChange={onStatusUpdate ? handleStatusChange : undefined}
