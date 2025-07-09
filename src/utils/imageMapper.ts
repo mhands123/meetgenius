@@ -19,7 +19,6 @@ export function getProfileImage(name: string): string {
     'Michael J.': '/images/michael-j.jpeg',
     'Summer Song': '/images/summer-song.jpeg',
     'Jennifer Liu': '/images/jennifer-liu.jpeg',
-    'Jennifer Liu': '/images/jennifer-liu.jpeg',
   };
 
   return nameToImageMap[name] || '/images/default-avatar.svg';
