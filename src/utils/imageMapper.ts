@@ -15,6 +15,11 @@ export function getProfileImage(name: string): string {
     'Colin Hirdman': '/images/colin-hirdman.jpeg',
     'Christi Kmecik': '/images/christi-kmecik.jpeg',
     'Hayley Brooks': '/images/hayley-brooks.jpeg',
+    'Arthur A Kennedy': '/images/arthur-a-kennedy.jpeg',
+    'Michael J.': '/images/michael-j.jpeg',
+    'Summer Song': '/images/summer-song.jpeg',
+    'Jennifer Liu': '/images/jennifer-liu.jpeg',
+    'Jennifer Liu': '/images/jennifer-liu.jpeg',
   };
 
   return nameToImageMap[name] || '/images/default-avatar.svg';
